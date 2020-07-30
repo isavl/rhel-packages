@@ -1,0 +1,30 @@
+[Unit]
+
+Description=Etcd key-value store
+
+After=network.target
+After=network-online.target
+
+Wants=network-online.target
+
+[Service]
+
+EnvironmentFile=-/etc/etcd/etcd.conf
+
+# Set GOMAXPROCS to number of processors.
+ExecStart=/bin/bash -c "GOMAXPROCS=$(nproc) /usr/bin/etcd"
+
+Type=notify
+
+User=etcd
+
+WorkingDirectory=/var/lib/etcd/
+
+Restart=on-failure
+RestartSec=30s
+
+LimitNOFILE=65536
+
+[Install]
+
+WantedBy=multi-user.target
