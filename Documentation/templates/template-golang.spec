@@ -10,6 +10,7 @@
 ##
 ## Example:
 ##   %%global with_example %%{?_without_example: 0} %%{?!_without_example: 1}
+##
 
 # Build with patches.
 %global with_patches %{?_without_patches: 0} %{?!_without_patches: 1}
