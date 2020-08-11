@@ -32,8 +32,8 @@
 %global goipath ${url}
 %global goaltipaths ${url}
 
-%global golicenses ${file_list}
 %global godocs ${file_list}
+%global golicenses ${file_list}
 
 %global gosupfiles ${file_list}
 
@@ -173,9 +173,9 @@ getent passwd ${pkg_name} >/dev/null || useradd -r -d %{_sharedstatedir}/${pkg_n
 
 %config(noreplace) %{_sysconfdir}/${pkg_name}/*
 
-%license LICENSE
-
 %doc README.md
+
+%license LICENSE
 
 %gopkgfiles
 
