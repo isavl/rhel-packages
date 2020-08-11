@@ -1,0 +1,20 @@
+[Unit]
+
+Description=GitLab runner
+
+After=ip6tables.service
+After=iptables.service
+After=network.target
+
+Wants=network.target
+
+[Service]
+
+ExecStart=/usr/bin/gitlab-runner "run" "--working-directory" "/var/lib/gitlab-runner" "--config" "/etc/gitlab-runner/config.toml" "--service" "gitlab-runner" "--user" "gitlab-runner"
+
+Restart=always
+RestartSec=30
+
+[Install]
+
+WantedBy=multi-user.target
