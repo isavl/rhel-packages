@@ -40,8 +40,6 @@
 %global commit ${git_commit_sha1}
 %global shortcommit %{lua:print(string.sub(rpm.expand("%{?commit}"), 1, 7))}
 
-%global debug_package %{nil}
-
 %if %{with_patches}
 %global autosetup_opts -p1
 %else
@@ -51,6 +49,8 @@
 ##
 ## Rpmbuild variables.
 ##
+
+%global debug_package %{nil}
 
 ###############################################################################
 # Packages
@@ -185,5 +185,5 @@ getent passwd ${pkg_name} >/dev/null || useradd -r -d %{_sharedstatedir}/${pkg_n
 
 %changelog
 
-* ${pack_date} ${packager_name} <${packager_email}> - ${pkg_name}-1
+* ${pack_date} ${packager_name} <${packager_email}> - ${pkg_version}-1
 - ${comment}

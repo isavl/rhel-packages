@@ -105,7 +105,7 @@ make %{?_smp_mflags} %{?make_opts}
 
 %install
 
-make DESTDIR=%{buildroot} install %{?make_opts}
+make %{?make_opts} DESTDIR=%{buildroot} install
 
 install -d -m 755 %{buildroot}/%{_sysconfdir}/${pkg_name}
 
@@ -177,5 +177,5 @@ getent passwd ${pkg_name} >/dev/null || useradd -r -d %{_sharedstatedir}/${pkg_n
 
 %changelog
 
-* ${pack_date} ${packager_name} <${packager_email}> - ${pkg_name}-1
+* ${pack_date} ${packager_name} <${packager_email}> - ${pkg_version}-1
 - ${comment}

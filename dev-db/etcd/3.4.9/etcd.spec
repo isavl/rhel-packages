@@ -8,6 +8,9 @@
 ## Use either --without <opt> in mock/rpmbuild/etc. command or force values
 ## to 0 in here to disable them.
 ##
+## Example:
+##   %%global with_example %%{?_without_example: 0} %%{?!_without_example: 1}
+##
 
 # Build with check stage.
 %global with_check %{?_without_check: 0} %{?!_without_check: 1}
@@ -21,6 +24,9 @@
 ## Use either --with <opt> in mock/rpmbuild/etc. command or force values
 ## to 1 in here to enable them.
 ##
+## Example:
+##   %%global with_example %%{?_with_example: 1} %%{?!_with_example: 0}
+##
 
 ##
 ## Default variables.
@@ -29,15 +35,13 @@
 %global goipath go.etcd.io/etcd
 %global goaltipaths github.com/coreos/etcd
 
-%global golicenses LICENSE NOTICE
 %global godocs CONTRIBUTING.md README.md README-*.md READMEv2-etcdctl.md Documentation
+%global golicenses LICENSE NOTICE
 
 %global gosupfiles integration/fixtures/* etcdserver/api/v2http/testdata/*
 
 %global commit d67e094272de95088201360add7b2e76f1a6b3b8
 %global shortcommit %{lua:print(string.sub(rpm.expand("%{?commit}"), 1, 7))}
-
-%global debug_package %{nil}
 
 %if %{with_patches}
 %global autosetup_opts -p1
@@ -48,6 +52,8 @@
 ##
 ## Rpmbuild variables.
 ##
+
+%global debug_package %{nil}
 
 ###############################################################################
 # Packages

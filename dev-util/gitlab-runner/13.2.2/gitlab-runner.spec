@@ -34,8 +34,6 @@
 %global commit a784a4b19be0c0d2bc14e7be58693a259b4c5d8a
 %global shortcommit %{lua:print(string.sub(rpm.expand("%{?commit}"), 1, 7))}
 
-%global debug_package %{nil}
-
 %if %{with_patches}
 %global autosetup_opts -p1
 %else
@@ -45,6 +43,8 @@
 ##
 ## Rpmbuild variables.
 ##
+
+%global debug_package %{nil}
 
 ###############################################################################
 # Packages
