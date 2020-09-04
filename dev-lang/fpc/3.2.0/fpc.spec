@@ -104,7 +104,6 @@ Source10: default.cft
 Source11: fpc.cft
 Source12: fppkg.cfg
 
-%if %{with_patches}
 # On Fedora we do not want stabs debug-information (even on 32 bit platforms).
 # https://bugzilla.redhat.com/show_bug.cgi?id=1475223
 Patch0001: 0001-fpc-3.2.0-dwarf-debug.patch
@@ -115,7 +114,6 @@ Patch0002: 0002-fpc-3.2.0-honor_SOURCE_DATE_EPOCH_in_date.patch
 
 # Upstream assumes /usr/lib/ for aarch64, but Fedora uses /usr/lib64/.
 Patch0003: 0003-fpc-3.2.0-fix-lib-paths-on-aarch64.patch
-%endif
 
 ExclusiveArch: %{arm} aarch64 %{ix86} ppc64le x86_64
 
