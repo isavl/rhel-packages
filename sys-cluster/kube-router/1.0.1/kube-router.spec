@@ -39,12 +39,6 @@
 
 %global debug_package %{nil}
 
-%if %{with_patches}
-%global autosetup_opts -p1
-%else
-%global autosetup_opts -N
-%endif
-
 ##
 ## Rpmbuild variables.
 ##
@@ -96,7 +90,11 @@ a single DaemonSet/Binary. It doesn't get any easier.
 
 %prep
 
-%autosetup %{?autosetup_opts}
+%if %{with_patches}
+%autosetup -p1
+%else
+%autosetup -N
+%endif
 
 %goprep -e -k -s %{_builddir}/kube-router-%{version}
 

@@ -34,12 +34,6 @@
 %global commit 6c27dace51d8800c6e8e46692e639cb0c0b214f2
 %global shortcommit %{lua:print(string.sub(rpm.expand("%{?commit}"), 1, 7))}
 
-%if %{with_patches}
-%global autosetup_opts -p1
-%else
-%global autosetup_opts -N
-%endif
-
 ##
 ## Rpmbuild variables.
 ##
@@ -101,7 +95,11 @@ Helper for gitlab runner.
 
 %prep
 
-%autosetup %{?autosetup_opts}
+%if %{with_patches}
+%autosetup -p1
+%else
+%autosetup -N
+%endif
 
 %goprep -e -k -s %{_builddir}/gitlab-runner-%{version}
 

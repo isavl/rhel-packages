@@ -195,12 +195,6 @@
 %global _kernelmodulesdir %{_modulesdir}/%{kernel_version}
 %global _debuginfodir /usr/lib/debug
 
-%if %{with_patches}
-%global _autosetup_opts -p1
-%else
-%global _autosetup_opts -N
-%endif
-
 ##
 ## Rpmbuild variables.
 ##
@@ -496,7 +490,11 @@ glibc package.
 
 %prep
 
-%autosetup %{?_autosetup_opts}
+%if %{with_patches}
+%autosetup -p1
+%else
+%autosetup -N
+%endif
 
 %if 0%{?fedora} || 0%{?rhel} > 7
 # Mangle /usr/bin/python shebangs to /usr/bin/python3.

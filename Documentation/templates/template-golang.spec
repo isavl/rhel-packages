@@ -40,12 +40,6 @@
 %global commit ${git_commit_sha1}
 %global shortcommit %{lua:print(string.sub(rpm.expand("%{?commit}"), 1, 7))}
 
-%if %{with_patches}
-%global autosetup_opts -p1
-%else
-%global autosetup_opts -N
-%endif
-
 ##
 ## Rpmbuild variables.
 ##
@@ -90,7 +84,11 @@ ${pkg_description}
 
 %prep
 
-%autosetup %{?autosetup_opts}
+%if %{with_patches}
+%autosetup -p1
+%else
+%autosetup -N
+%endif
 
 %goprep -e -k -s %{_builddir}/${pkg_name}-%{version}
 

@@ -39,12 +39,6 @@
 
 %global debug_package %{nil}
 
-%if %{with_patches}
-%global autosetup_opts -p1
-%else
-%global autosetup_opts -N
-%endif
-
 %if %{with_verbose}
 %global make_opts V=1
 %else
@@ -149,7 +143,11 @@ Kubernetes services for node host like kubelet and kube-proxy.
 
 %prep
 
-%autosetup %{?autosetup_opts}
+%if %{with_patches}
+%autosetup -p1
+%else
+%autosetup -N
+%endif
 
 ###############################################################################
 # Build
