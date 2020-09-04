@@ -29,7 +29,7 @@
 ##
 
 # Bootstrap fpc compiler.
-%global with_bootstrap %%{?_with_bootstrap: 1} %%{?!_with_bootstrap: 0}
+%global with_bootstrap %{?_with_bootstrap: 1} %{?!_with_bootstrap: 0}
 
 ##
 ## Default variables.
